@@ -8,7 +8,11 @@ import './InfoBox.css'
 
 export default function InfoBox({ info }) {
 
-    const INIT_URL = "https://images.unsplash.com/photo-1723650530629-b2c79d71f554?q=80&w=737&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    const INIT_URL = "https://images.unsplash.com/photo-1723650530629-b2c79d71f554?q=80&w=737&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
+    let COLD_URL = "https://images.unsplash.com/photo-1514903936-98502c8f016f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvbGQlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D";
+    let HOT_URL = "https://images.unsplash.com/photo-1765979576274-7ce0b9252df6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjZ8fGhvdCUyMGltYWdlfGVufDB8fDB8fHww";
+    let RAIN_URL = "https://images.unsplash.com/photo-1620385019253-b051a26048ce?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFpbiUyMGltYWdlfGVufDB8fDB8fHww";
 
     return (
         <div className="InfoBox">
@@ -18,7 +22,13 @@ export default function InfoBox({ info }) {
                 <Card sx={{ maxWidth: 345 }}>
                     <CardMedia
                         sx={{ height: 140 }}
-                        image={INIT_URL}
+                        image={
+                            info.humidity > 80
+                                ? RAIN_URL
+                                : info.temp > 15
+                                    ? HOT_URL
+                                    : COLD_URL
+                        }
                         title="green iguana"
                     />
                     <CardContent>
